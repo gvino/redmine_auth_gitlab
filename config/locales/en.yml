@@ -2,4 +2,4 @@ en:
   notice_unable_to_obtain_gitlab_credentials: "Unable to obtain credentials from GitLab."
   notice_domain_not_allowed: "You can not login using %{domain} domain."
   notice_access_denied: "You must allow to use you GitLab credentials to enter this site."
-  login_via_gitlab: "Login via GitLab"
+  login_via_gitlab: "Login with GitLab »"
