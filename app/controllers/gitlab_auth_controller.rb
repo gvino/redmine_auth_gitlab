@@ -36,7 +36,7 @@ class GitlabAuthController < AccountController
     end
   end
 
-  def try_to_login info
+  def try_to_login(gitlab_user_info)
    params[:back_url] = session[:back_url]
    session.delete(:back_url)
    user = User.joins(:email_addresses).where(:email_addresses => { :address => info["email"] }).first_or_create
