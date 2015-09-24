@@ -21,12 +21,12 @@ class GitlabAuthController < AccountController
     else
       token = oauth_client.auth_code.get_token(params[:code], :redirect_uri => oauth_gitlab_callback_url)
       result = token.get("#{settings[:gitlab_url]}/api/v3/user")
-      info = JSON.parse(result.body)
-      if info && info["email"]
-        if allowed_domain_for?(info["email"])
-          try_to_login info
+      gitlab_user_info = JSON.parse(result.body)
+      if gitlab_user_info && gitlab_user_info["email"]
+        if allowed_domain_for?(gitlab_user_info["email"])
+          try_to_login gitlab_user_info
         else
-          flash[:error] = l(:notice_domain_not_allowed, :domain => parse_email(info["email"])[:domain])
+          flash[:error] = l(:notice_domain_not_allowed, :domain => parse_email(gitlab_user_info["email"])[:domain])
           redirect_to signin_path
         end
       else
@@ -39,17 +39,14 @@ class GitlabAuthController < AccountController
   def try_to_login(gitlab_user_info)
    params[:back_url] = session[:back_url]
    session.delete(:back_url)
-   user = User.joins(:email_addresses).where(:email_addresses => { :address => info["email"] }).first_or_create
+   user = User.joins(:email_addresses).where(:email_addresses => { :address => gitlab_user_info["email"] }).first_or_create
     if user.new_record?
       # Self-registration off
       redirect_to(home_url) && return unless Setting.self_registration?
       # Create on the fly
-      user.firstname, user.lastname = info["name"].split(' ') unless info['name'].nil?
-      user.firstname ||= info[:given_name]
-      user.lastname ||= info[:family_name]
-      user.mail = info["email"]
-      user.login = parse_email(info["email"])[:login]
-      user.login ||= [user.firstname, user.lastname]*"."
+      user.firstname, user.lastname = gitlab_user_info["name"].split(' ') unless gitlab_user_info['name'].nil?
+      user.mail = gitlab_user_info["email"]
+      user.login = gitlab_user_info["username"]
       user.random_password
       user.register
 
