@@ -6,8 +6,8 @@ Redmine::Plugin.register :redmine_auth_gitlab do
   author 'Dmitry Kovalenok, Pete Deffendol'
   description 'This is a plugin for authentication through GitLab'
   version '0.0.1'
-  url 'https://git.mdsc.com/pete/redmine_auth_gitlab'
-  author_url 'http://mdsc.com'
+  url 'https://github.com/pdeffendol/redmine_auth_gitlab'
+  author_url 'https://github.com/pdeffendol'
 
   settings :default => {
     :client_id => "",
