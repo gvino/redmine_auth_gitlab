@@ -1,18 +1,18 @@
 require 'redmine'
-require_dependency 'redmine_omniauth_google/hooks'
+require_dependency 'redmine_auth_gitlab/hooks'
 
-Redmine::Plugin.register :redmine_omniauth_google do
-  name 'Redmine Omniauth Google plugin'
-  author 'Dmitry Kovalenok'
-  description 'This is a plugin for Redmine registration through google'
+Redmine::Plugin.register :redmine_auth_gitlab do
+  name 'GitLab Authentication'
+  author 'Dmitry Kovalenok, Pete Deffendol'
+  description 'This is a plugin for authentication through GitLab'
   version '0.0.1'
-  url 'https://github.com/twinslash/redmine_omniauth_google'
-  author_url 'http://twinslash.com'
+  url 'https://git.mdsc.com/pete/redmine_auth_gitlab'
+  author_url 'http://mdsc.com'
 
   settings :default => {
     :client_id => "",
     :client_secret => "",
     :oauth_autentification => false,
     :allowed_domains => ""
-  }, :partial => 'settings/google_settings'
+  }, :partial => 'settings/gitlab_settings'
 end

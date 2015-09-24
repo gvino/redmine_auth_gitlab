@@ -1,0 +1,20 @@
+<p>
+  <%= label_tag 'settings[gitlab_url]', 'GitLab URL:' %>
+  <%= text_field_tag 'settings[gitlab_url]', @settings[:gitlab_url] %>
+</p>
+<p>
+  <%= label_tag 'settings[client_id]', 'Application ID:' %>
+  <%= text_field_tag 'settings[client_id]', @settings[:client_id] %>
+</p>
+<p>
+  <%= label_tag 'settings[client_secret]', 'Secret:' %>
+  <%= text_field_tag 'settings[client_secret]', @settings[:client_secret] %>
+</p>
+<p>
+  <%= label_tag 'settings[allowed_domains]', 'Allowed domains (from email addresses):' %>
+  <%= text_area_tag "settings[allowed_domains]", @settings[:allowed_domains], :rows => 5 %>
+</p>
+<p>
+  <%= label_tag 'settings[use_gitlab_authentication]', 'Enable GitLab authentication?' %>
+  <%= check_box_tag "settings[use_gitlab_authentication]", true, @settings[:use_gitlab_authentication] %>
+</p>

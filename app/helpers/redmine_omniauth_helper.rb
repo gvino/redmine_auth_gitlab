@@ -1,2 +1,2 @@
-module RedmineOmniauthHelper
+module GitlabAuthHelper
 end

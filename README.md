@@ -1,6 +1,6 @@
-## Redmine omniauth google
+## Redmine GitLab Authentication
 
-This plugin is used to authenticate Redmine users using Google's OAuth2 provider.
+This plugin is used to authenticate Redmine users through GitLab.
 
 ### Installation:
 
@@ -37,14 +37,14 @@ To authenticate via Google you must first register your redmine instance via the
 
 ### Configuration
 
-* Login as a user with administrative privileges. 
+* Login as a user with administrative privileges.
 * In top menu select "Administration".
 * Click "Plugins"
 * In plugins list, click "Configure" in the row for "Redmine Omniauth Google plugin"
 * Enter the Сlient ID & Client Secret shown when you registered your application via Google Cloud Console.
 * Check the box near "Oauth authentication"
-* Click Apply. 
- 
+* Click Apply.
+
 Users can now to use their Google Account to log in to your instance of Redmine.
 
 Additionaly
