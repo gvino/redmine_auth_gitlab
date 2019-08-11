@@ -26,7 +26,7 @@ Register your Redmine instance as an OAuth application in GitLab:
 * Choose "New Application"
 * Enter a name for this application (e.g., "Redmine")
 * Enter your Redmine instance's callback URL (https://redmine.example.com/oauth2callback)
-* Check the `openid` scope
+* Check the `openid` and `read_user` scopes
 * Save the changes and obtain the Application ID and Secret from the subsequent
   screen
 
