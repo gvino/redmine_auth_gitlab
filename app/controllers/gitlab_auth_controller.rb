@@ -92,6 +92,6 @@ class GitlabAuthController < AccountController
   end
 
   def scopes
-    'openid'
+    'openid read_user'
   end
 end
