@@ -17,21 +17,21 @@ class GitlabAuthController < AccountController
   def oauth_gitlab_callback
     if params[:error]
       flash[:error] = l(:notice_access_denied)
-      redirect_to signin_path
+      redirect_to(signin_path)
     else
       token = oauth_client.auth_code.get_token(params[:code], :redirect_uri => oauth_gitlab_callback_url)
       result = token.get("#{settings[:gitlab_url]}/api/v3/user")
       gitlab_user_info = JSON.parse(result.body)
       if gitlab_user_info && gitlab_user_info["email"]
         if allowed_domain_for?(gitlab_user_info["email"])
-          try_to_login gitlab_user_info
+          try_to_login(gitlab_user_info)
         else
           flash[:error] = l(:notice_domain_not_allowed, :domain => parse_email(gitlab_user_info["email"])[:domain])
-          redirect_to signin_path
+          redirect_to(signin_path)
         end
       else
         flash[:error] = l(:notice_unable_to_obtain_gitlab_credentials)
-        redirect_to signin_path
+        redirect_to(signin_path)
       end
     end
   end
@@ -92,6 +92,6 @@ class GitlabAuthController < AccountController
   end
 
   def scopes
-    ''
+    'openid read_user'
   end
 end
