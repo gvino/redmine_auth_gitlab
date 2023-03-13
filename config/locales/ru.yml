@@ -1,0 +1,5 @@
+ru:
+  notice_unable_to_obtain_gitlab_credentials: "Не удалось получить учетную запись из GitLab."
+  notice_domain_not_allowed: "Вы не можете войти используя домен %{domain}."
+  notice_access_denied: "Вы обязаны разрешить использовать свою учетную запись в Gitlab для входа на этот сайт"
+  login_via_gitlab: "Войти через GitLab »"
