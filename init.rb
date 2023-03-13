@@ -1,5 +1,8 @@
 require 'redmine'
-require_dependency 'redmine_auth_gitlab/hooks'
+if Rails.configuration.respond_to?(:autoloader) && Rails.configuration.autoloader == :zeitwerk
+  Rails.autoloaders.each { |loader| loader.ignore(File.dirname(__FILE__) + '/lib') }
+end
+require File.dirname(__FILE__) + '/lib/redmine_auth_gitlab/hooks'
 
 Redmine::Plugin.register :redmine_auth_gitlab do
   name 'GitLab Authentication'
